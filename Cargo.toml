@@ -1,0 +1,18 @@
+[package]
+name = "trk"
+version = "0.1.0"
+authors = ["Cameron Daniel <cam.daniel@gmail.com>"]
+
+[dependencies]
+log = "0.4"
+fern = "0.5"
+chrono = "0.4"
+failure = "0.1"
+structopt = "0.2"
+
+rusqlite = "0.15"
+# textplots = "0.3"
+textplots = { git = "https://github.com/ccakes/textplots-rs" }
+termion = "1"
+read_input = "0.5.2"
+prettytable-rs = "^0.8"
