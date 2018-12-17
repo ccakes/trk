@@ -1,5 +1,4 @@
 #[macro_use] extern crate log;
-#[macro_use] extern crate failure;
 extern crate fern;
 extern crate chrono;
 extern crate structopt;
@@ -26,14 +25,6 @@ mod menu;
 use cli::Command;
 use menu::Menu;
 use data::DataSource;
-
-#[derive(Debug, Fail)]
-pub enum Error {
-    #[fail(display = "Database error: {}", inner)]
-    SqliteError {
-        inner: rusqlite::Error
-    }
-}
 
 pub fn run() -> i32 {
     let args = cli::init();

@@ -1,13 +1,16 @@
 [package]
 name = "trk"
-version = "0.1.0"
+description = "Simple terminal-based time-series data recorder and plotter."
+version = "0.1.1"
 authors = ["Cameron Daniel <cam.daniel@gmail.com>"]
+repository = "https://github.com/ccakes/trk"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
 log = "0.4"
 fern = "0.5"
 chrono = "0.4"
-failure = "0.1"
 structopt = "0.2"
 
 rusqlite = "0.15"
