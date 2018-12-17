@@ -10,7 +10,7 @@ This helps me track how many issues there are over time and quickly and easily i
 when large changes happen.
 
 <p align="center">
-  <img src="trk.gif?raw=true" style="max-width:750px" />
+  <img src="https://github.com/ccakes/trk/blob/master/trk.gif" style="max-width:750px" />
 </p>
 
 ## Usage
