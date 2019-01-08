@@ -121,10 +121,10 @@ pub fn run() -> i32 {
                     let x_width = prepared.len() as f32;
 
                     Chart::new(150, 60, 0.0, x_width)
-                        .y_label(&data.unit)
+                        // .y_label(&data.unit)
                         .lineplot( Shape::Lines(prepared.as_slice()) )
                         .nice();
-                    
+
                     if table {
                         let mut table = Table::new();
                         table.add_row(row!["#", "TIMESTAMP", "VALUE"]);

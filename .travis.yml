@@ -1,0 +1,70 @@
+# Based on the "trust" template v0.1.2
+# https://github.com/japaric/trust/tree/v0.1.2
+
+dist: bionic
+language: rust
+services: docker
+sudo: required
+
+env:
+  global:
+    # TODO Update this to match the name of your project.
+    - CRATE_NAME=trk
+
+matrix:
+  # TODO These are all the build jobs. Adjust as necessary. Comment out what you
+  # don't need
+  include:
+    # Linux
+    - env: TARGET=x86_64-unknown-linux-gnu
+
+    # OSX
+    - env: TARGET=x86_64-apple-darwin
+      os: osx
+
+before_install:
+  - set -e
+  - rustup self update
+
+install:
+  - source ~/.cargo/env || true
+
+script:
+  - sh ci/setup.sh
+  - cargo build --target $TARGET --release
+
+after_script: set +e
+
+before_deploy:
+  - local src=$(pwd)
+  - local stage=$(mktemp -d)
+  - cp target/$TARGET/release/trk $stage/
+  - cd $stage
+  - tar xcf $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz *
+  - cd $src
+
+deploy:
+  api_key:
+    secure: "l/I/cpyyt+ZlkoxUtNRAiscYqirZdzgVLcmDGIjnXifBsHG8WRbTdgUYEh66MSShM7qX7UbVs5qZGf1axzuBppTiKzKS38hMmBQJ8xjHXw6EbZCiApAPQCeCN+hhTDPm6D2Y4pFd3MZ3iJeG+H/3jlB26hQZWjKj2R+lrGLxyn0gJQsOSc5lsb3X4IzrE/8x7b9sqxfaDoZ1vfHWH9SJ+RnC2dLDDJ50M0Q5nd6J3/Vh71P8dhYEU/IHpem1LL+DJ+C6Q5SA//fT7T6DxESLaNCp55jLk8VNkr7ghT3jHaUB2VGdL4o7VCVw8gCdj8PivBtLZiDq0FF9QyQIiCR11Av9gidQDBL58twbiq+X/XoIrMv+3VSj3cEAO+kIC/UmGaePFBWB65f1P/V19AHK8J4EaeymWqBuKQW2IfpscpGmih+vGdRet+/8WbetyCinNV+xMWlQr4LrmovCpiPgQTq3XxRdJeQPPp+/AMkIlVrP2HftHy3GcSAMmLIN3fgjmzh7TCvx/KohuiH9QQtM7Mx1QQKEyRG8bGoDYPodaJPrJ3Un2Cjtwa8YZq7duvVqzXCjHPKEhlnKgqgMwpsVHPty8qqcO4Ez62QQLGxqxFc1IlDvEI6ze4mALdKo5gyykUBCCqqHLojnJaoJ2V2OeOSIYDPXnQ0fJjfJhvNAQFA="
+  file_glob: true
+  file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
+  on:
+    condition: $TRAVIS_RUST_VERSION = stable
+    tags: true
+  provider: releases
+  skip_cleanup: true
+
+cache: cargo
+before_cache:
+  # Travis can't cache files that are not readable by "others"
+  - chmod -R a+r $HOME/.cargo
+
+branches:
+  only:
+    # release tags
+    - /^v\d+\.\d+\.\d+.*$/
+    - master
+
+notifications:
+  email:
+    on_success: never

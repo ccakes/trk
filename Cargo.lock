@@ -302,7 +302,7 @@ dependencies = [
 
 [[package]]
 name = "trk"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "fern 0.5.7 (registry+https://github.com/rust-lang/crates.io-index)",
