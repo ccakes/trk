@@ -1,5 +1,8 @@
 Revision history for trk
 
+0.2.0
+    - Vendored plot dependency
+
 0.1.1
     - Removed unnecessary failure dependency
 

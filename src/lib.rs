@@ -6,12 +6,11 @@ extern crate structopt;
 #[macro_use] extern crate prettytable;
 extern crate rusqlite;
 extern crate termion;
-extern crate textplots;
+extern crate drawille;
 extern crate read_input;
 
 use prettytable::Table;
 use chrono::{Local, TimeZone};
-use textplots::{Chart, Shape, Plot};
 
 use std::{env, fs, io};
 use std::io::{BufRead, Read};
@@ -21,10 +20,12 @@ mod cli;
 mod cmd;
 mod data;
 mod menu;
+mod textplots;
 
 use cli::Command;
 use menu::Menu;
 use data::DataSource;
+use textplots::{Chart, Shape, Plot};
 
 pub fn run() -> i32 {
     let args = cli::init();
@@ -121,7 +122,7 @@ pub fn run() -> i32 {
                     let x_width = prepared.len() as f32;
 
                     Chart::new(150, 60, 0.0, x_width)
-                        // .y_label(&data.unit)
+                        .y_label(&data.unit)
                         .lineplot( Shape::Lines(prepared.as_slice()) )
                         .nice();
 

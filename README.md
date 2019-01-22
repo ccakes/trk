@@ -9,9 +9,7 @@ when you're working with a pile of legacy infrastructure (and cleaning it up).
 This helps me track how many issues there are over time and quickly and easily identify
 when large changes happen.
 
-<p align="center">
-  <img src="https://github.com/ccakes/trk/blob/master/trk.gif" style="max-width:750px" />
-</p>
+[![asciicast](https://asciinema.org/a/lP7JcL7lX6mZexFX8HM0Z2LqM.svg)](https://asciinema.org/a/lP7JcL7lX6mZexFX8HM0Z2LqM)
 
 ## Usage
 
@@ -74,3 +72,5 @@ fixed. Things which are at the top of my (low-priority) todo list:
 ## LICENSE
 
 See LICENSE file.
+
+Code under `src/textplots` is MIT licensed but (C) Alexey Suslov

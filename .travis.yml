@@ -36,18 +36,13 @@ script:
 after_script: set +e
 
 before_deploy:
-  - local src=$(pwd)
-  - local stage=$(mktemp -d)
-  - cp target/$TARGET/release/trk $stage/
-  - cd $stage
-  - tar xcf $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz *
-  - cd $src
+  - cp target/$TARGET/release/trk $CRATE_NAME-$TRAVIS_TAG-$TARGET
 
 deploy:
   api_key:
-    secure: "l/I/cpyyt+ZlkoxUtNRAiscYqirZdzgVLcmDGIjnXifBsHG8WRbTdgUYEh66MSShM7qX7UbVs5qZGf1axzuBppTiKzKS38hMmBQJ8xjHXw6EbZCiApAPQCeCN+hhTDPm6D2Y4pFd3MZ3iJeG+H/3jlB26hQZWjKj2R+lrGLxyn0gJQsOSc5lsb3X4IzrE/8x7b9sqxfaDoZ1vfHWH9SJ+RnC2dLDDJ50M0Q5nd6J3/Vh71P8dhYEU/IHpem1LL+DJ+C6Q5SA//fT7T6DxESLaNCp55jLk8VNkr7ghT3jHaUB2VGdL4o7VCVw8gCdj8PivBtLZiDq0FF9QyQIiCR11Av9gidQDBL58twbiq+X/XoIrMv+3VSj3cEAO+kIC/UmGaePFBWB65f1P/V19AHK8J4EaeymWqBuKQW2IfpscpGmih+vGdRet+/8WbetyCinNV+xMWlQr4LrmovCpiPgQTq3XxRdJeQPPp+/AMkIlVrP2HftHy3GcSAMmLIN3fgjmzh7TCvx/KohuiH9QQtM7Mx1QQKEyRG8bGoDYPodaJPrJ3Un2Cjtwa8YZq7duvVqzXCjHPKEhlnKgqgMwpsVHPty8qqcO4Ez62QQLGxqxFc1IlDvEI6ze4mALdKo5gyykUBCCqqHLojnJaoJ2V2OeOSIYDPXnQ0fJjfJhvNAQFA="
+    secure: "CyPCWIEWrhK2eTJZuuaRev8T9Okcil7Xar/UUibfju84rOFIj7iMzgNw3/ko1Dc04g0Lrm3H0khqNt3I8QVd/if373s3YmAIXVuVfcdA+//GdgzaUkxKPldbsa3wlrhMZEhPil2bqkjV0pfmeXJ/7WAPanfFUNbSdnOlf5N7Z2AuNlFVfdpNWbsoPQoE84Zao90FJ8EwT3S0xwlqBfzxIXbzlvqfIVCoU0iNCVUAiBIt4nI8Gqjji8xkwMiqzOl/igV8OVdofl1w8SEFf6zfn8eitbvZ4Ca7kUb+HclQb6Z4H4m230l41C3T/jEfpQF333z/idVSLcohgkdejHloUMwPuA/7qtYdGadJjg1CFMb0+aYAZV0vfq7FrXSmZfkfwe/uO+oTywUKMqRNtnrkExbVaIyHgpLQDjIhfJvrS7ox0bYdm9TE823Uel+EZ7FgkHeN1vFAdObP899Smuw52eBQroy3cvnxD9FRSdeDhJEleUQTRnSJN6nsodJ85QVuVeJRTIT/adWdt/rQRUgAtXNZlmqvhvIFHJyGsuFOAoNx5d3Kpjf+al0u6muEJP28hkiPhnBreieDY4UJRyB10yh9X6awDeXmBuQy5o/xdx8ZQZH8mdUMIfF7hsCzUVVW+9sejby96C9IR3kUdz0FNSt4WGj3XUC/FZhiyD0l9J4="
   file_glob: true
-  file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
+  file: $CRATE_NAME-$TRAVIS_TAG-$TARGET
   on:
     condition: $TRAVIS_RUST_VERSION = stable
     tags: true
