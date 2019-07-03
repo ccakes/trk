@@ -1,7 +1,7 @@
 [package]
 name = "trk"
 description = "Simple terminal-based time-series data recorder and plotter."
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Cameron Daniel <cam.daniel@gmail.com>"]
 repository = "https://github.com/ccakes/trk"
 readme = "README.md"
